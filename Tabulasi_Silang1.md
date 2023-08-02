@@ -42,6 +42,7 @@ Berikut adalah hasil tabulasi silang yang disimpan pada lembar kerja baru dengan
 
 Data angka yang ada pada tabel di atas merupakan total kematian untuk setiap jenis bencana (Type) pada tiap tahun (Year). 
 
+'''Javascript
 function TypeAndYear() {
   let ss = SpreadsheetApp.getActive();
   let sheet = ss.getSheetByName('Penyebab Kematian di Indonesia yang Dilaporkan - Clean');
@@ -86,3 +87,5 @@ function TypeAndYear() {
     }
   }
 }
+'''
+'''
