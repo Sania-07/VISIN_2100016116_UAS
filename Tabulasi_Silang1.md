@@ -1,9 +1,5 @@
 # Proses Pembuatan Tabulasi Silang Data Penyebab - Penyebab Kematian di Indonesia
 
-## Deskripsi Fungsi
-
-Fungsi ini merupakan sebuah skrip yang digunakan dalam Google Apps Script untuk mengolah data pada Spreadsheet. Fungsi ini akan membentuk tabulasi silang (cross-tabulation) dari data yang terdapat pada lembar kerja 'Penyebab Kematian di Indonesia yang Dilaporkan - Clean' dan menyimpan hasilnya pada lembar kerja baru dengan nama 'Kematian Berdasarkan Tahun dan Tipe'.
-
 ## Alur Proses
 
 1. Mengambil aktifkan Spreadsheet dan mendapatkan lembar kerja dengan nama 'Penyebab Kematian di Indonesia yang Dilaporkan - Clean'.
