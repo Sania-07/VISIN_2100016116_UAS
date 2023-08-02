@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Disaster Data Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Add a custom font for the title */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #disasterChartContainer {
+            max-width: 800px;
+            margin: 0 20px 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #disasterChartContainer canvas {
+            max-width: 800px;
+            height: 480px;
+        }
+
+        #narasiContainer {
+            flex: 1;
+            max-width: 800px;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #3498db;
+            color: #fff;
+            padding: 15px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        p {
+            line-height: 1.6;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .narasi-box {
+            background-color: #f2f2f2;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .narasi-box h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #3498db;
+        }
+
+        .narasi-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* New style for positioning explanation */
+        .explanation-container {
+            max-width: 800px;
+            margin-left: 20px;
+        }
+
+        .explanation-box {
+            background-color: #f2f2f2;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            text-align: justify;
+        }
+
+        .explanation-box h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data Penyebab - penyebab Kematian di Indonesia</h1>
+    <div id="disasterChartContainer">
+        <canvas id="disasterChart"></canvas>
+    </div>
+
+    <!-- Explanation section -->
+    <div id="narasiContainer">
+        <div class="narasi-box">
+            <div class="explanation-container">
+                <div class="explanation-box">
+                    <h3>Penjelasan Data Visualisasi</h3>
+                    <p>
+                        Data visualisasi di atas menyajikan jumlah kematian di Indonesia berdasarkan tipe bencana dan tahun dalam periode tahun 2000 hingga 2022. Grafik menggunakan tipe visualisasi line chart (diagram garis) untuk memperlihatkan perbandingan jumlah kematian antara tipe bencana maupun perubahan jumlah kematian dari tahun ke tahun.
+                    </p>
+                </div>
+                <div class="explanation-box">
+                    <h3>Interpretasi Grafik</h3>
+                    <p>
+                        Berdasarkan data visualisasi, terlihat beberapa informasi penting, antara lain:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Bencana Alam:</strong> Jumlah kematian akibat bencana alam memiliki tren yang fluktuatif. Pada tahun 2004 terjadi peningkatan yang drastis dengan mencapai 166,698 kematian, tetapi setelah tahun tersebut jumlah kematian cenderung menurun.
+                        </li>
+                        <li>
+                            <strong>Bencana Non Alam dan Penyakit:</strong> Jumlah kematian akibat bencana non alam dan penyakit juga memiliki fluktuasi. Terjadi peningkatan signifikan pada tahun 2005 dengan 121,063 kematian, kemudian cenderung menurun sejak tahun 2008, tetapi ada beberapa lonjakan tertentu pada tahun-tahun berikutnya.
+                        </li>
+                        <li>
+                            <strong>Bencana Sosial:</strong> Jumlah kematian akibat bencana sosial cenderung rendah pada periode sebelumnya, namun terjadi peningkatan pada tahun 2010 dengan 33 kematian dan lonjakan tertinggi pada tahun 2019 dengan 143 kematian. Setelah tahun 2019, jumlah kematian akibat bencana sosial kembali menurun.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // The data you provided (unchanged)
+        const data = {
+            labels: [
+                '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007',
+                '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015',
+                '2016', '2017', '2018', '2019', '2020', '2021', '2022'
+            ],
+            datasets: [
+                {
+                    label: 'Bencana Alam',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    fill: true,
+                    data: [0, 0, 0, 0, 166698, 1973, 6960, 562, 262, 1447, 1306, 172, 174, 0, 0, 215, 442, 169, 3739, 352, 236, 583, 0]
+                },
+                {
+                    label: 'Bencana Non Alam dan Penyakit',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    fill: true,
+                    data: [339, 324, 435, 633, 54046, 121063, 120104, 88713, 106035, 31661, 37922, 1967, 1595, 1145, 1199, 2096, 2156, 875, 1212, 14338, 37823, 138519, 12876]
+                },
+                {
+                    label: 'Bencana Sosial',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    fill: true,
+                    data: [0, 0, 0, 0, 0, 0, 1, 0, 1, 16, 33, 34, 65, 0, 0, 45, 26, 0, 25, 7, 4, 4, 0]
+                }
+            ]
+        };
+
+        const options = {
+            responsive: true,
+            indexAxis: 'x',
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Jumlah Kematian di Indonesia Berdasarkan Tipe dan Tahun',
+                    font: {
+                        family: 'Montserrat',
+                        size: 18,
+                        weight: 'bold',
+                        lineHeight: 1.2,
+                    },
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        font: {
+                            family: 'Arial, sans-serif',
+                            size: 12,
+                        },
+                    },
+                },
+                animation: {
+                    duration: 1500, // Add animation to make the chart load smoother
+                },
+            },
+        };
+
+        // Create the chart
+        const ctx = document.getElementById('disasterChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+        });
+    </script>
+</body>
+</html>
